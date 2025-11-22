@@ -33,3 +33,4 @@ const PlayerView = ({ player, onBack }) => {
         </div>
     );
 };
+export default PlayerView;
