@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import GameService from '../services/api';
 
-const CreateGame = ({ onGameCreated }) => {
+const CreateGame = ({ onGameCreated, onBack }) => {
     const [gameData, setGameData] = useState({
         name: '',
         participants: [''],
@@ -10,6 +10,7 @@ const CreateGame = ({ onGameCreated }) => {
         locations: [''],
         createdBy: ''
     });
+
     const [isCreating, setIsCreating] = useState(false);
 
     const addItem = (field) => {
@@ -69,6 +70,10 @@ const CreateGame = ({ onGameCreated }) => {
 
     return (
         <div className="create-game">
+            <button onClick={onBack} className="back-btn">
+                ← Volver a Partidas
+            </button>
+
             <h2>Crear Nueva Partida</h2>
 
             <div className="form-section">
@@ -145,13 +150,18 @@ const CreateGame = ({ onGameCreated }) => {
                 </div>
             </div>
 
-            <button
-                onClick={handleCreateGame}
-                disabled={isCreating}
-                className="create-btn"
-            >
-                {isCreating ? 'Creando...' : 'Crear Partida'}
-            </button>
+            <div className="form-actions">
+                <button onClick={onBack} className="secondary-btn">
+                    Cancelar
+                </button>
+                <button
+                    onClick={handleCreateGame}
+                    disabled={isCreating}
+                    className="create-btn"
+                >
+                    {isCreating ? 'Creando...' : 'Crear Partida'}
+                </button>
+            </div>
         </div>
     );
 };

@@ -120,8 +120,9 @@ const GameLobby = ({ gameId, onJoinGame, onBack }) => {
     return (
         <div className="game-lobby">
             <button onClick={onBack} className="back-btn">
-                ← Volver a Partidas
+                ← Salir del Lobby
             </button>
+
 
             <h2>Unirse a Partida</h2>
             <p><strong>ID de Partida:</strong> {gameId}</p>

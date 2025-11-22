@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import GameService from '../services/api';
 
-const GameAdmin = ({ gameId, onReset }) => {
+const GameAdmin = ({ gameId, onReset, onBack }) => {
     const [adminKey, setAdminKey] = useState('');
     const [isResetting, setIsResetting] = useState(false);
 
@@ -35,7 +35,11 @@ const GameAdmin = ({ gameId, onReset }) => {
 
     return (
         <div className="game-admin">
-            <h3>Panel de Administración</h3>
+            <button onClick={onBack} className="back-btn">
+                ← Volver
+            </button>
+
+            <h3>Panel de Administración - Partida {gameId}</h3>
             <div className="admin-controls">
                 <input
                     type="password"

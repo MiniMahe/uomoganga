@@ -1,16 +1,17 @@
+// src/App.js
 import React, { useState } from 'react';
-import './App.css';
-import GameAdmin from './components/GameAdmin';
-import PlayerView from './components/PlayerView';
-import GameLobby from './components/GameLobby';
 import CreateGame from './components/CreateGame';
+import GameLobby from './components/GameLobby';
+import PlayerView from './components/PlayerView';
+import GameAdmin from './components/GameAdmin';
 import GameList from './components/GameList';
+import ConfigChecker from './components/ConfigChecker';
+import './App.css';
 
-// App.js actualizado
 function App() {
   const [currentGameId, setCurrentGameId] = useState('');
   const [currentPlayer, setCurrentPlayer] = useState(null);
-  const [view, setView] = useState('list'); // 'list', 'create', 'join', 'play', 'admin'
+  const [view, setView] = useState('list');
 
   const handleGameCreated = (gameId) => {
     setCurrentGameId(gameId);
@@ -33,41 +34,59 @@ function App() {
 
   const handleResetGame = () => {
     setCurrentPlayer(null);
+    setCurrentGameId('');
     setView('list');
   };
 
+  const handleExitGame = () => {
+    setCurrentPlayer(null);
+    setCurrentGameId('');
+    setView('list');
+  };
+
+  // Determinar si estamos en una vista de juego (donde ocultamos el menú)
+  const isInGameView = view === 'join' || view === 'play';
+
   return (
     <div className="App">
-      <header className="app-header">
-        <h1>🎮 Juego de Asignaciones Secretas</h1>
-        <nav className="app-nav">
-          <button onClick={() => setView('list')}>Partidas</button>
-          <button onClick={() => setView('create')}>Crear</button>
-          <button onClick={() => setView('admin')}>Admin</button>
-        </nav>
-      </header>
+      <ConfigChecker />
 
-      <main className="app-main">
+      {/* Mostrar header solo si NO estamos en vista de juego */}
+      {!isInGameView && (
+        <header className="app-header">
+          <h1>🎮 Juego de Asignaciones Secretas</h1>
+          <nav className="app-nav">
+            <button onClick={() => setView('list')}>Partidas</button>
+            <button onClick={() => setView('create')}>Crear</button>
+            <button onClick={() => setView('admin')}>Admin</button>
+          </nav>
+        </header>
+      )}
+
+      <main className={`app-main ${isInGameView ? 'game-view' : ''}`}>
         {view === 'list' && (
           <GameList onSelectGame={handleSelectGame} />
         )}
 
         {view === 'create' && (
-          <CreateGame onGameCreated={handleGameCreated} />
+          <CreateGame
+            onGameCreated={handleGameCreated}
+            onBack={() => setView('list')}
+          />
         )}
 
         {view === 'join' && currentGameId && (
           <GameLobby
             gameId={currentGameId}
             onJoinGame={handleJoinGame}
-            onBack={() => setView('list')}
+            onBack={handleExitGame}
           />
         )}
 
         {view === 'play' && currentPlayer && (
           <PlayerView
             player={currentPlayer}
-            onBack={() => setView('list')}
+            onBack={handleExitGame}
           />
         )}
 
@@ -85,8 +104,12 @@ function App() {
               <GameAdmin
                 gameId={currentGameId}
                 onReset={handleResetGame}
+                onBack={() => setView('list')}
               />
             )}
+            <button onClick={() => setView('list')} className="back-btn">
+              ← Volver a Partidas
+            </button>
           </div>
         )}
       </main>
