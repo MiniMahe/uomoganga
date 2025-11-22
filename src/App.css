@@ -1,38 +1,260 @@
+/* src/App.css */
 .App {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.app-nav {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.app-nav button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.app-nav button:hover {
+  background-color: #0056b3;
+}
+
+.form-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input-group button {
+  padding: 8px 12px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.create-btn,
+.join-btn,
+.reset-btn {
+  padding: 12px 24px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.create-btn:disabled,
+.join-btn:disabled,
+.reset-btn:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.assignment-card {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid #007bff;
+  margin: 20px 0;
+}
+
+.assignment-item {
+  margin: 15px 0;
+  font-size: 18px;
+}
+
+.instructions {
+  background-color: #fff3cd;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #ffeaa7;
+  color: #856404;
+}
+
+.admin-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.enter-game-id {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.enter-game-id input {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Agregar estos estilos */
+.game-list {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.game-card {
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.game-card h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.game-info p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.join-game-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
   color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.full-game-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: not-allowed;
+  margin-top: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.game-list-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.refresh-btn {
+  padding: 10px 20px;
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.create-new-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.no-games {
+  text-align: center;
+  padding: 40px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.admin-section {
+  text-align: center;
+}
+
+.admin-section input {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+}
+
+/* Agregar a App.css */
+.game-lobby {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.join-form {
+  margin: 20px 0;
+}
+
+.message {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  background-color: #fff3cd;
+  border: 1px solid #ffeaa7;
+  color: #856404;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+.refresh-btn {
+  padding: 8px 16px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
 }
